@@ -1,16 +1,19 @@
 import axios from 'axios';
 
-function getRepos(username) {
-	return axios.get(`https://api.github.com/users/${username}/repos`);
-}
+class Helpers {
+	
+	getRepos(username) {
+		return axios.get(`https://api.github.com/users/${username}/repos`);
+	}
 
-function getUserInfo(username) {
-	return axios.get(`http://api.github.com/users/${username}`);
-}
+	getUserInfo(username) {
+		return axios.get(`http://api.github.com/users/${username}`);
+	}
 
-var helpers = {
-	getGithubInfo(username) {
-		return axios.all([getRepos(username), getUserInfo(username)])
+	static getGithubInfo(username) {
+		let instance = new Helpers();
+		
+		return axios.all([instance.getRepos(username), instance.getUserInfo(username)])
 		.then( (arr) => {
 			return {
 				repos: arr[0].data,
@@ -20,4 +23,4 @@ var helpers = {
 	}
 }
 
-export default helpers;
+export default Helpers;

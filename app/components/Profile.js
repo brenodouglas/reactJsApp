@@ -27,12 +27,12 @@ class Profile extends React.Component {
         });
 
         helpers.getGithubInfo(this.router.getCurrentParams().username)
-          .then((dataObj) => {
-              this.setState({
-                bio: dataObj.bio,
-                repos: dataObj.repos
-              })
-          });
+        .then((dataObj) => {
+            this.setState({
+              bio: dataObj.bio,
+              repos: dataObj.repos
+            })
+        });
 
     }
 
@@ -63,25 +63,25 @@ class Profile extends React.Component {
         let username = this.router.getCurrentParams().username;
         
         return (
-          <div className="row">
+            <div className="row">
 
-              <div className="col-md-4">
+                <div className="col-md-4">
 
-                  <UserProfile username={username} bio={this.state.bio}/>
+                    <UserProfile username={username} bio={this.state.bio}/>
 
-              </div>
-              <div className="col-md-4">
+                </div>
+                <div className="col-md-4">
 
-                  <Repos username={username} repos={this.state.repos} />
+                    <Repos username={username} repos={this.state.repos} />
 
-              </div>
-              <div className="col-md-4">
+                </div>
+                <div className="col-md-4">
 
-                  <Notes username={username} notes={this.state.notes} addNote={this.handleAddNote.bind(this)} />
+                    <Notes username={username} notes={this.state.notes} addNote={this.handleAddNote.bind(this)} />
 
-              </div>
+                </div>
 
-          </div>
+            </div>
         )
     }
 }
